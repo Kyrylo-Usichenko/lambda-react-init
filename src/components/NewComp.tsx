@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../App";
-import { setProducts } from "../store/actions/user";
+import { setProducts } from "../store/actions/example";
 
 function NewComp() {
   const products = useSelector((state: any) => state.userReducer.products);
@@ -9,9 +9,7 @@ function NewComp() {
   useEffect(() => {
     dispatch(setProducts());
   });
-  // console.log(products);
-
-  return <button>asdasd</button>;
+  return <div>Hello, world</div>;
 }
 
 export default NewComp;

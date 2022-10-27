@@ -19,5 +19,5 @@ export default class MainProtected extends HttpClientProtected {
     return MainProtected.instanceCached;
   };
 
-  public getPostPhotoUrl = () => this.instance.get<any>(``);
+  public getPostPhotoUrl = () => this.instance.get<any>(`/123`);
 }

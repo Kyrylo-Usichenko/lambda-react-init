@@ -12,5 +12,5 @@ export const storeSlice = createSlice({
   },
 });
 
-export const userActions = storeSlice.actions;
+export const exampleActions = storeSlice.actions;
 export default storeSlice.reducer;

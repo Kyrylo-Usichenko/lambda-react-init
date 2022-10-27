@@ -1,7 +1,7 @@
-import { userActions } from "./../reducers/user";
+import { exampleActions } from "../reducers/example";
 import { AsyncAction } from "./common";
 
-export type UserActions = ReturnType<typeof userActions.setProducts>;
+export type exampleActions = ReturnType<typeof exampleActions.setProducts>;
 
 export const setProducts =
   (): AsyncAction =>
@@ -9,7 +9,7 @@ export const setProducts =
     try {
       // const response = await mainApi.getProducts();
       // console.log(response);
-      dispatch(userActions.setProducts());
+      dispatch(exampleActions.setProducts());
     } catch (e) {
       console.log(e);
     }
