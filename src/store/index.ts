@@ -1,30 +1,25 @@
-import { connectRouter, routerMiddleware } from "connected-react-router";
-import { createBrowserHistory } from "history";
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, compose, configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import Main from "../api/main";
 import MainProtected from "../api/main-protected";
 import { UserActions } from "./actions/user";
 import userReducer from "./reducers/user";
-export const history = createBrowserHistory();
+
+export type State = ReturnType<typeof userReducer>;
+export type Actions = UserActions;
 
 export const api = {
   mainApi: Main.getInstance(),
   mainProtectedApi: MainProtected.getInstance(),
 };
 
-const rootReducer = combineReducers({
-  router: connectRouter(history),
-  userReducer,
+const reducers = {
+  userReducer: userReducer,
+};
+
+const enhancer = compose(applyMiddleware(thunk.withExtraArgument(api)));
+
+export default configureStore({
+  reducer: reducers,
+  enhancers: (defaultEnhancers) => [enhancer, ...defaultEnhancers],
 });
-
-const composeEnhancers = compose;
-
-const enhancer = composeEnhancers(
-  applyMiddleware(routerMiddleware(history), thunk.withExtraArgument(api))
-);
-
-export type State = ReturnType<typeof rootReducer>;
-export type Actions = UserActions;
-
-export default createStore(rootReducer, enhancer);

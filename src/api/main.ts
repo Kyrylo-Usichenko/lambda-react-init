@@ -1,10 +1,5 @@
 import HttpClient from "./http-client";
 
-export interface phoneResponse {
-  status: string;
-  code: number;
-}
-
 class Main extends HttpClient {
   private static instanceCached: Main;
 
@@ -20,7 +15,7 @@ class Main extends HttpClient {
     return Main.instanceCached;
   };
 
-  public sendPhone = () => this.instance.post<phoneResponse>("/otp");
+  public getProducts = () => this.instance.get<any>("/products/3");
 }
 
 export default Main;

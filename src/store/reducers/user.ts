@@ -1,18 +1,16 @@
-import { createReducerFunction, ImmerReducer } from "immer-reducer";
+import { createSlice } from "@reduxjs/toolkit";
 
-interface UserState {
- 
-}
+export const storeSlice = createSlice({
+  name: "user",
+  initialState: {
+    products: null,
+  },
+  reducers: {
+    setProducts: () => {
+      console.log("reducer");
+    },
+  },
+});
 
-const initialState: UserState = {
-  
-};
-
-export class User extends ImmerReducer<UserState> {
-  setFirstAction() {
- 
-  }
-
-}
-
-export default createReducerFunction(User, initialState);
+export const userActions = storeSlice.actions;
+export default storeSlice.reducer;
